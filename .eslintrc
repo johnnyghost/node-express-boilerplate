@@ -1,0 +1,6 @@
+{
+  "extends": [
+    "@mobilabsolutions/eslint-config/es6",
+    "@mobilabsolutions/eslint-config-node"
+  ]
+}
