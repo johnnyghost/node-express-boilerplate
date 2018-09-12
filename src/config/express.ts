@@ -16,7 +16,7 @@ class App {
     this.app = express();
 
     this.routes();
-    this.config();
+    this.middleware();
   }
 
   /**
@@ -29,7 +29,7 @@ class App {
   /**
    * Config the app
    */
-  private config():void {
+  private middleware():void {
     // support application/json type post data
     this.app.use(bodyParser.json());
     // support application/x-www-form-urlencoded post data

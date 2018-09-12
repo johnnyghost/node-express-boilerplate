@@ -4,8 +4,8 @@ import express from 'express';
  * Status Controller
  * @interface
  */
-interface StatusController {
-  getStatus: any;
+interface IStatusController {
+  getStatus(req: express.Request, res: express.Response): void;
 }
 
 /**
@@ -13,7 +13,7 @@ interface StatusController {
  *
  * @returns {Object}
  */
-const statusController: StatusController = {
+const statusController: IStatusController = {
   /**
    * Returns the status
    */
