@@ -1,7 +1,8 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import routes from './../modules';
+import methodOverride from 'method-override';
+import routes from '../modules';
 
 class App {
 
@@ -30,12 +31,16 @@ class App {
    * Config the app
    */
   private middleware():void {
-    // support application/json type post data
+    // parse application/json type post data
     this.app.use(bodyParser.json());
-    // support application/x-www-form-urlencoded post data
+    // parse application/x-www-form-urlencoded post data
     this.app.use(bodyParser.urlencoded({ extended: false }));
     // enable CORS - Cross Origin Resource Sharing
     this.app.use(cors());
+    // lets you use HTTP verbs such as PUT or DELETE
+    // in places where the client doesn't support it
+    this.app.use(methodOverride());
+
   }
 }
 
