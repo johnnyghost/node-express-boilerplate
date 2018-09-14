@@ -1,27 +1,21 @@
-import express from 'express';
+import { JsonController, Get, Req, Res } from 'routing-controllers';
 
 /**
- * Status Controller
- * @interface
+ * StatusController
+ * @apiVersion 1.0.0
+ * @apiName Status
  */
-interface IStatusController {
-  getStatus(req: express.Request, res: express.Response): void;
+@JsonController('/status')
+class StatusController {
+  /**
+   * @api {get} status
+   * @apiDescription Get the status
+   * @returns {Promise<String>} Returns a resolved string
+   */
+  @Get('/')
+  async get(@Req() request: any, @Res() response: any): Promise<any> {
+    return response.send({ status: 'ok' });
+  }
 }
 
-/**
- * statusController.
- *
- * @returns {Object}
- */
-const statusController: IStatusController = {
-  /**
-   * Returns the status
-   */
-  getStatus: (req: express.Request, res: express.Response): void => {
-    res.send({
-      status: 'ok'
-    });
-  }
-};
-
-export default statusController;
+export default StatusController;

@@ -2,7 +2,8 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import methodOverride from 'method-override';
-import routes from '../modules';
+import { useExpressServer } from 'routing-controllers';
+import path from 'path';
 
 class App {
 
@@ -16,15 +17,19 @@ class App {
   constructor() {
     this.app = express();
 
-    this.routes();
+    this.setupControllers();
     this.middleware();
   }
 
   /**
    * Initiate the routes.
    */
-  private routes():void {
-    this.app.use('/', routes);
+  private setupControllers():void {
+    const controllersPath = path.resolve('src', 'modules');
+    useExpressServer(this.app, {
+        cors: true,
+        controllers:[`${controllersPath}/**/*.controller.ts`]
+    });
   }
 
   /**
@@ -35,8 +40,6 @@ class App {
     this.app.use(bodyParser.json());
     // parse application/x-www-form-urlencoded post data
     this.app.use(bodyParser.urlencoded({ extended: false }));
-    // enable CORS - Cross Origin Resource Sharing
-    this.app.use(cors());
     // lets you use HTTP verbs such as PUT or DELETE
     // in places where the client doesn't support it
     this.app.use(methodOverride());

@@ -12,7 +12,10 @@
   "dependencies": {
     "cors": "^2.8.4",
     "express": "4.16.3",
-    "method-override": "^3.0.0"
+    "method-override": "^3.0.0",
+    "reflect-metadata": "^0.1.12",
+    "routing-controllers": "^0.7.7",
+    "winston": "^3.1.0"
   },
   "devDependencies": {
     "@mobilabsolutions/eslint-config": "^1.1.1",
@@ -22,7 +25,11 @@
     "@types/express": "^4.16.0",
     "@types/method-override": "0.0.31",
     "@types/node": "^10.9.4",
+    "@types/winston": "^2.4.4",
+    "eslint": "^5.5.0",
+    "eslint-plugin-prettier": "^2.6.2",
     "nodemon": "1.18.4",
+    "prettier": "^1.14.2",
     "ts-node": "7.0.1",
     "typescript": "3.0.3"
   }
