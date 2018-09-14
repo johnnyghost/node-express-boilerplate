@@ -1,4 +1,5 @@
-import winston from 'winston';
+import { Request, Response } from 'express';
+import winston, { format } from 'winston';
 import { Options } from 'morgan';
 
 const options = {
@@ -6,8 +7,8 @@ const options = {
     level: 'info',
     filename: './logs/app.log',
     handleExceptions: true,
-    json: true,
-    maxsize: 5242880, //5MB
+    json: false,
+    maxsize: 5242880,
     maxFiles: 5,
     colorize: false
   },
@@ -15,7 +16,8 @@ const options = {
     level: 'debug',
     handleExceptions: true,
     json: false,
-    colorize: true
+    colorize: true,
+    format: format.combine(format.splat(), format.simple())
   }
 };
 
@@ -25,24 +27,18 @@ const logger = winston.createLogger({
   exitOnError: false,
   level: 'info',
   transports: [
-    new winston.transports.Console(),
-    new winston.transports.File({ filename: 'app.log' })
+    new winston.transports.Console(options.console),
+    new winston.transports.File(options.file)
   ]
 });
 
-if (process.env.NODE_ENV !== 'production') {
-  logger.add(
-    new winston.transports.Console({
-      format: winston.format.simple()
-    })
-  );
-}
-
+/**
+ * Stream logger.
+ */
 export const loggerStream: Options = {
+  skip: (req: Request, res: Response): boolean => res.statusCode < 400,
   stream: {
-    write: function(message: string) {
-      logger.info(message);
-    }
+    write: (message: string) => logger.info(message)
   }
 };
 
