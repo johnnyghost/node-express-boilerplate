@@ -1,0 +1,8 @@
+{
+  "apps": [
+    {
+      "name": "ghost",
+      "script": "./src/index.ts"
+    }
+  ]
+}
