@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import logger from './common/logger';
+import logger from './common/logger/winston';
 import app from './config/Express';
 
 const port: any = process.env.PORT || 3000;
