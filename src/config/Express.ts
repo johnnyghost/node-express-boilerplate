@@ -4,7 +4,7 @@ import methodOverride from 'method-override';
 import morgan from 'morgan';
 import { useExpressServer } from 'routing-controllers';
 import path from 'path';
-import { loggerStream } from '../common/logger/winston';
+import { loggerStream } from '../common/logger/morgan';
 
 class App {
 
