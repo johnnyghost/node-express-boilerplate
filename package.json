@@ -4,6 +4,8 @@
   "description": "Express boilerplate",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
+    "clean": "rimraf dist",
     "start": "cross-env NODE_ENV=production pm2 start process.json --env development",
     "dev": "nodemon --exec ts-node src/index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -35,6 +37,7 @@
     "eslint-plugin-prettier": "^2.6.2",
     "nodemon": "1.18.4",
     "prettier": "^1.14.2",
+    "rimraf": "^2.6.2",
     "ts-node": "7.0.1",
     "typescript": "^3.0.3"
   }
