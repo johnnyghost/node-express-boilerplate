@@ -1,9 +1,9 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import methodOverride from 'method-override';
-import morgan from 'morgan';
+import * as express from 'express';
+import * as bodyParser from 'body-parser';
+import * as methodOverride from 'method-override';
+import * as morgan from 'morgan';
 import { useExpressServer } from 'routing-controllers';
-import path from 'path';
+import * as path from 'path';
 import { loggerStream } from '../common/logger/morgan';
 
 class App {
@@ -26,10 +26,12 @@ class App {
    * Initiate the routes.
    */
   private setupControllers():void {
-    const controllersPath = path.resolve('src', 'modules');
+    const envPath = process.env.NODE_ENV === 'production' ? 'dist' : 'src'
+    console.log(envPath)
+    const controllersPath = path.resolve(envPath, 'modules');
     useExpressServer(this.app, {
         cors: true,
-        controllers:[`${controllersPath}/**/*.controller.ts`]
+        controllers:[`${controllersPath}/**/*.controller.*`]
     });
   }
 

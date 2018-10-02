@@ -1,4 +1,4 @@
-import winston, { format } from 'winston';
+import * as winston from 'winston';
 
 const LEVELS = {
   INFO: 'info',
@@ -20,7 +20,10 @@ const options = {
     handleExceptions: true,
     json: false,
     colorize: true,
-    format: format.combine(format.splat(), format.simple())
+    format: winston.format.combine(
+      winston.format.splat(),
+      winston.format.simple()
+    )
   }
 };
 
